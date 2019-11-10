@@ -10,12 +10,15 @@
 		ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B0231BBFAF00365194 /* AppDelegate.swift */; };
 		ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */; };
 		ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */; };
-		ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27B6231BBFAF00365194 /* Main.storyboard */; };
 		ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27B9231BBFB300365194 /* Assets.xcassets */; };
 		ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */; };
 		ADAA27C6231BC02C00365194 /* light_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27C4231BC02B00365194 /* light_background.pdf */; };
 		ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27C5231BC02B00365194 /* dark_background.pdf */; };
 		ADAA27CE231BC87F00365194 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ADAA27CD231BC87F00365194 /* README.md */; };
+		CF50E98D2373D0EE009ABC82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF50E98B2373D0EE009ABC82 /* Main.storyboard */; };
+		CF97C0252376FF6C004D4435 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF97C0242376FF6C004D4435 /* WeatherModel.swift */; };
+		CFA898CB23768A9E00299BBF /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA898CA23768A9E00299BBF /* WeatherData.swift */; };
+		CFAD3E0D2373CD1300C99B08 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD3E0C2373CD1300C99B08 /* WeatherManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,13 +26,16 @@
 		ADAA27B0231BBFAF00365194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		ADAA27B4231BBFAF00365194 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		ADAA27B7231BBFAF00365194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ADAA27B9231BBFB300365194 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADAA27BC231BBFB300365194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ADAA27BE231BBFB300365194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADAA27C4231BC02B00365194 /* light_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = light_background.pdf; sourceTree = "<group>"; };
 		ADAA27C5231BC02B00365194 /* dark_background.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = dark_background.pdf; sourceTree = "<group>"; };
 		ADAA27CD231BC87F00365194 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CF50E98C2373D0EE009ABC82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CF97C0242376FF6C004D4435 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		CFA898CA23768A9E00299BBF /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		CFAD3E0C2373CD1300C99B08 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +71,11 @@
 			children = (
 				ADAA27B0231BBFAF00365194 /* AppDelegate.swift */,
 				ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */,
-				ADAA27CA231BC3FA00365194 /* Model */,
-				ADAA27C9231BC3F200365194 /* View */,
 				ADAA27C8231BC3E500365194 /* Controller */,
+				ADAA27CA231BC3FA00365194 /* Model */,
 				ADAA27B9231BBFB300365194 /* Assets.xcassets */,
 				ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */,
+				CF50E98B2373D0EE009ABC82 /* Main.storyboard */,
 				ADAA27BE231BBFB300365194 /* Info.plist */,
 				ADAA27C5231BC02B00365194 /* dark_background.pdf */,
 				ADAA27C4231BC02B00365194 /* light_background.pdf */,
@@ -85,17 +91,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		ADAA27C9231BC3F200365194 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ADAA27B6231BBFAF00365194 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		ADAA27CA231BC3FA00365194 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CFAD3E0C2373CD1300C99B08 /* WeatherManager.swift */,
+				CFA898CA23768A9E00299BBF /* WeatherData.swift */,
+				CF97C0242376FF6C004D4435 /* WeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,8 +162,8 @@
 				ADAA27CE231BC87F00365194 /* README.md in Resources */,
 				ADAA27C7231BC02C00365194 /* dark_background.pdf in Resources */,
 				ADAA27BD231BBFB300365194 /* LaunchScreen.storyboard in Resources */,
+				CF50E98D2373D0EE009ABC82 /* Main.storyboard in Resources */,
 				ADAA27BA231BBFB300365194 /* Assets.xcassets in Resources */,
-				ADAA27B8231BBFAF00365194 /* Main.storyboard in Resources */,
 				ADAA27C6231BC02C00365194 /* light_background.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,7 +176,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADAA27B5231BBFAF00365194 /* WeatherViewController.swift in Sources */,
+				CFA898CB23768A9E00299BBF /* WeatherData.swift in Sources */,
 				ADAA27B1231BBFAF00365194 /* AppDelegate.swift in Sources */,
+				CFAD3E0D2373CD1300C99B08 /* WeatherManager.swift in Sources */,
+				CF97C0252376FF6C004D4435 /* WeatherModel.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,20 +187,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ADAA27B6231BBFAF00365194 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ADAA27B7231BBFAF00365194 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ADAA27BB231BBFB300365194 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				ADAA27BC231BBFB300365194 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CF50E98B2373D0EE009ABC82 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF50E98C2373D0EE009ABC82 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -321,12 +325,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TNSM43P2F3;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.appbrewery.Clima;
+				PRODUCT_BUNDLE_IDENTIFIER = co.javierCueto.Clima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -338,12 +343,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TNSM43P2F3;
 				INFOPLIST_FILE = Clima/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.appbrewery.Clima;
+				PRODUCT_BUNDLE_IDENTIFIER = co.javierCueto.Clima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
