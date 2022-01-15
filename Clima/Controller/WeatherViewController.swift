@@ -8,8 +8,11 @@
 
 import UIKit
 import CoreLocation
-class WeatherViewController: UIViewController{
+import RxSwift
+import RxCocoa
 
+class WeatherViewController: UIViewController{
+    
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -17,8 +20,9 @@ class WeatherViewController: UIViewController{
     
     let locationManager = CLLocationManager()
     
-    var weatherManager = WeatherManager()
+    //var weatherManager = WeatherManager()
     
+    private var disposebag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +32,71 @@ class WeatherViewController: UIViewController{
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         
-        searchField.delegate = self
-        weatherManager.delegate = self
+        searchField.rx.controlEvent(.editingDidEndOnExit)
+            .asObservable()
+            .map { self.searchField.text }
+            .subscribe(onNext: { city in 
+                if let city = city {
+                    if city.isEmpty{
+                        self.displayWeather(nil)
+                    }else{
+                        self.fetchWeather(by: city)
+                        
+                    }
+                }
+            }).disposed(by: disposebag)
     }
-
     
+    private func displayWeather(_ weather: WeatherModel?) {
+        if let weather = weather {
+            DispatchQueue.main.async {
+                self.temperatureLabel.text = weather.temperatureString
+                self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+                self.cityLabel.text = weather.cityName
+                
+            }
+        }else {
+            self.temperatureLabel.text = ""
+            self.conditionImageView.image = UIImage()
+            self.cityLabel.text = ""
+        }
+    }
+    
+    private func fetchWeather(by city: String){
+        guard let cityEncoded = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed), let url = URL.urlForWeatherAPI(city: cityEncoded) else {
+            return
+        }
+        
+        let resource = Resource<WeatherData>(url: url)
+        
+        let search = URLRequest.load(resource: resource).observe(on: MainScheduler.instance).asDriver(onErrorJustReturn: WeatherData.empty)
+        
+        search.map { result in
+            let id = result.weather[0].id
+            let temp = result.main.temp
+            let name = result.name
+            return WeatherModel(conditionId: id, cityName: name, temperature: temp).temperatureString
+
+        }.drive(self.temperatureLabel.rx.text)
+            .disposed(by: disposebag)
+        
+        search.map { result in
+            return result.name
+
+        }.drive(self.cityLabel.rx.text).disposed(by: disposebag)
+        
+        
+        search.map { result in
+            let id = result.weather[0].id
+            let temp = result.main.temp
+            let name = result.name
+            return UIImage(systemName: WeatherModel(conditionId: id, cityName: name, temperature: temp).conditionName)!
+
+        }.drive(self.conditionImageView.rx.image).disposed(by: disposebag)
+    
+    }
+    
+
     @IBAction func currentLocationButton(_ sender: UIButton) {
         locationManager.requestLocation()
     }
@@ -62,14 +126,6 @@ extension WeatherViewController: UITextFieldDelegate{
     }
     
     
-//    trigger to conect with the open weather
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let city = searchField.text {
-            weatherManager.fechWeather(cityName: city)
-        }
-        searchField.text = ""
-    }
-    
 }
 
 
@@ -87,22 +143,22 @@ extension WeatherViewController: WeatherManagerDelegate {
         }
         
     }
-//en case of error appear a messege just in console, fix this part
+    //en case of error appear a messege just in console, fix this part
     func didFailWithError(error: Error) {
-
+        
         print("###########################################")
-              DispatchQueue.main.async {
-        // create the alert
-        let alert = UIAlertController(title: ":(", message: "Lo sentimos pero no existe lo que busca, ella no te ama.", preferredStyle: UIAlertController.Style.alert)
-
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            // create the alert
+            let alert = UIAlertController(title: ":(", message: "Lo sentimos pero no existe lo que busca, ella no te ama.", preferredStyle: UIAlertController.Style.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
         print(error)
-         print("###########################################")
+        print("###########################################")
     }
 }
 
@@ -116,25 +172,25 @@ extension WeatherViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             print("realiza la peticion con el gps automatico")
-            weatherManager.fechWeather(latitude: lat, longitude: lon)
+            //weatherManager.fechWeather(latitude: lat, longitude: lon)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-         print("###########################################")
-            DispatchQueue.main.async {
-        // create the alert
-        let alert = UIAlertController(title: ":)", message: "Lo sentimos pero te hackearon los Rusos", preferredStyle: UIAlertController.Style.alert)
-
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
+        print("###########################################")
+        DispatchQueue.main.async {
+            // create the alert
+            let alert = UIAlertController(title: ":)", message: "Lo sentimos pero te hackearon los Rusos", preferredStyle: UIAlertController.Style.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
-
+        
         print(error)
-         print("###########################################")
+        print("###########################################")
     }
 }
 

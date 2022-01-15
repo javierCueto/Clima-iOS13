@@ -14,6 +14,12 @@ struct WeatherData: Decodable {
     let weather : [Weather]
 }
 
+extension WeatherData {
+    static var empty: WeatherData {
+        return WeatherData(name: "Nada de nada", main: Main(temp: 0), weather: [Weather(main: "vacio", id: 5)])
+    }
+}
+
 struct Main: Decodable {
     let temp : Double
 }
