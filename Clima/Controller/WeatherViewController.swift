@@ -68,8 +68,16 @@ class WeatherViewController: UIViewController{
         }
         
         let resource = Resource<WeatherData>(url: url)
-        
-        let search = URLRequest.load(resource: resource).observe(on: MainScheduler.instance).asDriver(onErrorJustReturn: WeatherData.empty)
+ 
+        /*
+         let search = URLRequest.load(resource: resource).observe(on: MainScheduler.instance).asDriver(onErrorJustReturn: WeatherData.empty)
+        */
+        let search = URLRequest.load(resource: resource)
+            .observe(on: MainScheduler.instance).retry(3)
+            .catch { error in
+                print("-------" + error.localizedDescription)
+                return Observable.just(WeatherData.empty)
+            }.asDriver(onErrorJustReturn: WeatherData.empty)
         
         search.map { result in
             let id = result.weather[0].id
